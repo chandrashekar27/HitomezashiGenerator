@@ -1,9 +1,19 @@
+<!-- 
+	Basic functionality done
+	To add
+	1. Better layout and design for whole page
+	2. Option for different colours
+	3. Option for different size of pattern
+	4. Animation for generating patterns
+	5. 60 degree patterns
+ -->
+
 <!DOCTYPE html>
 <html>
 
 	<head>
 		<meta charset="utf-8">
-		<title>Hitomezashi Pattern Generator</title>
+		<title>Hitomezashi Stitching Pattern Generator</title>
 		<meta name="author" content="Chandrashekar">
 		<meta name="description" content="Site where you can generate random or custom Hitomezashi patterns">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,8 +24,26 @@
 
 	<body>
 		<!----------------------
+			Initial basic layout
+			To mainly focus on the canvas
 			------------------->
-		
+		<div id="mainHeader">
+			<h1> Hitomezashi Stitching Pattern Generator </h1>
+		</div>
+
+		<div id="inputBoxesDiv">
+			<p>X axis Pattern</p>
+			<input class="inpBox" placeholder="Enter as binary string" id="inputXdata" type="text">
+			<p>Y axis Pattern</p>
+			<input class="inpBox" placeholder="Enter as binary string" id="inputYdata" type="text">
+			<input id="generateButton" value="Generate" title="Generate" type="submit">
+		</div>
+
+		<div id="canvasBox">
+			<canvas id="canvas">
+
+			</canvas>
+		</div>
 
 		<script src="js/script.js"></script>
 	</body>
