@@ -5,7 +5,7 @@
 	2. Option for different colours
 	3. Option for different size of pattern
 	4. Animation for generating patterns
-	5. 60 degree patterns
+	5. Improve look of 60 degree pattern
  -->
 
 <!DOCTYPE html>
@@ -32,10 +32,28 @@
 		</div>
 
 		<div id="inputBoxesDiv">
-			<p>X axis Pattern</p>
-			<input class="inpBox" placeholder="Enter as binary string" id="inputXdata" type="text">
-			<p>Y axis Pattern</p>
-			<input class="inpBox" placeholder="Enter as binary string" id="inputYdata" type="text">
+			<form id="patternForm">
+				<label for="modelist">Choose a mode:</label>
+				<select id="modelist" name="modelist">
+					<option value="90 degrees" selected>90 degrees</option>
+					<option value="60 degrees">60 degrees</option>
+					<!-- <option value="Circular">Circular</option> -->
+				</select>
+			</form>
+			<div class="degrees90">
+				<p>X axis Pattern</p>
+				<input class="inpBox" placeholder="Enter as binary string" id="inputXdata90" type="text">
+				<p>Y axis Pattern</p>
+				<input class="inpBox" placeholder="Enter as binary string" id="inputYdata90" type="text">
+			</div>
+			<div class="degrees60">
+				<p>X axis Pattern</p>
+				<input class="inpBox" placeholder="Enter as binary string" id="inputXdata60" type="text">
+				<p>Y axis Pattern</p>
+				<input class="inpBox" placeholder="Enter as binary string" id="inputYdata60" type="text">
+				<p>Z axis Pattern</p>
+				<input class="inpBox" placeholder="Enter as binary string" id="inputZdata60" type="text">
+			</div>
 			<input id="generateButton" value="Generate" title="Generate" type="submit">
 		</div>
 

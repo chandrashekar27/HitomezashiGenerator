@@ -14,16 +14,29 @@ body {
 }
 
 #inputBoxesDiv {
-	display: block;
+	display: inline;
 	background-color: whitesmoke;
 	margin-bottom: 2px;
+}
+
+.degrees90 {
+	display: inline;
+}
+
+.degrees60 {
+	display: inline;
 }
 
 .inpBox {
 	padding: 1px;
 }
 
+.invisible {
+	display: none;
+}
+
 #generateButton {
+	display: inline;
 	margin-left: 20px;
 }
 
