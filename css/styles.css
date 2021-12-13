@@ -9,14 +9,22 @@ body {
 	align-content: center;
 	width: 100%;
 	background-color: whitesmoke;
+	margin: 0;
+	border: 0;
+	padding: 1px;
 	color: black;
 	height: auto;
+}
+
+h1 {
+	margin: 5px;
 }
 
 #inputBoxesDiv {
 	display: inline;
 	background-color: whitesmoke;
 	margin-bottom: 2px;
+	align-content: center;
 }
 
 .degrees90 {
@@ -27,8 +35,13 @@ body {
 	display: inline;
 }
 
+.circularInputs {
+	display: inline;
+}
+
 .inpBox {
 	padding: 1px;
+	margin: 1px;
 }
 
 .invisible {
@@ -37,27 +50,24 @@ body {
 
 #generateButton {
 	display: inline;
-	margin-left: 20px;
+	margin-left: 5px;
 }
 
 p {
-	display: inline-block;
+	display: inline;
 }
 
 #canvasBox {
 	align-content: center;
-	text-align: center;
-	width: 95%;
-	height: 70vh;
+	width: auto;
+	height: auto;
 	margin-top: 5px;
 }
 
 #canvas {
 	background-color: black;
-	margin: 1px;
-	border: 2px;
-	width: 90vw;
-	height: 95%;
+	margin: 0px;
+	border: 1px;
 	border-style: solid;
 	border-color: gray;
 }
