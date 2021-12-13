@@ -48,8 +48,8 @@ function generate90(){
 		/  Need to add option for user 
 		/  to set scales
 		*/
-		xscale = 8;
-		yscale = 8;
+		xscale = 12;
+		yscale = 12;
 		drawX();
 		drawY();
 	}
@@ -68,6 +68,7 @@ function generate90(){
 				ctx.moveTo(x,y);
 				ctx.lineTo(x + xscale, y);
 				ctx.stroke();
+				ctx.closePath();
 				x += (2*xscale);
 			}
 			y += yscale;
@@ -88,6 +89,7 @@ function generate90(){
 				ctx.moveTo(x,y);
 				ctx.lineTo(x, y + yscale);
 				ctx.stroke();
+				ctx.closePath();
 				y += (2*yscale);
 			}
 			x += xscale;
@@ -130,7 +132,7 @@ function generate60() {
 		/  Need to add option for user 
 		/  to set scales
 		*/
-		scale = 10;
+		scale = 15;
 		drawX();
 		drawY();
 		drawZ();
@@ -151,6 +153,7 @@ function generate60() {
 				ctx.moveTo(x,y);
 				ctx.lineTo(x + scale, y);
 				ctx.stroke();
+				ctx.closePath();
 				x += (2*scale);
 			}
 			y += scale*cpib6;
@@ -176,6 +179,7 @@ function generate60() {
 				ctx.moveTo(x,y);
 				ctx.lineTo(x - (scale*0.5), y + (scale*cpib6));
 				ctx.stroke();
+				ctx.closePath();
 				y += (2*cpib6*scale);
 				x -= scale;
 			}
@@ -202,6 +206,7 @@ function generate60() {
 				ctx.moveTo(x,y);
 				ctx.lineTo(x + (scale*0.5), y + (scale*cpib6));
 				ctx.stroke();
+				ctx.closePath();
 				y += (2*cpib6*scale);
 				x += scale;
 			}
@@ -221,6 +226,7 @@ function generateCircular() {
 
 	function generatePatternCircular() {
 		ctx.clearRect(0, 0, canvaswidth, canvasheight);
+		ctx.translate(canvaswidth/2, canvasheight/2);
 		ctx.strokeStyle = colors[mfloor(mrand()*(colors.length))];
 		rdata = document.getElementById('inputRdata').value;
 		tdata = document.getElementById('inputTdata').value;
@@ -237,8 +243,8 @@ function generateCircular() {
 	}
 
 	function drawCircular() {
-		angle = PI/3;
-		scale = 10;
+		angle = PI/12;
+		scale = 6;
 		drawR();
 		drawT();
 	}
@@ -246,12 +252,6 @@ function generateCircular() {
 	function drawR() {
 		var radius = scale;
 		var sangle = 0;
-
-		// console.log("func drawR called");
-		// ctx.beginPath();
-		// ctx.moveTo(0,0);
-		// ctx.lineTo(570,280);
-		// ctx.stroke();
 
 		for(var reps=0; reps < 200; reps++) {
 			var phasedata = rdata[reps];
@@ -262,8 +262,9 @@ function generateCircular() {
 			}
 			while((0.1 < (2*PI)-sangle) && (radius < MAX(canvasheight/2, canvaswidth/2))){
 				ctx.beginPath();
-				ctx.arc(canvaswidth/2, canvasheight/2, radius, sangle, sangle+angle);
+				ctx.arc(0, 0, radius, sangle, sangle+angle);
 				ctx.stroke();
+				ctx.closePath();
 				sangle += (2*angle);
 			}
 			radius += scale;
@@ -271,7 +272,26 @@ function generateCircular() {
 	}
 
 	function drawT() {
-		//
+		// vars angle, scale
+		var sangle = 0;
+		var r=0;
+		for(var reps=0; reps < 200; reps++) {
+			var phasedata = tdata[reps];
+			if(phasedata==0) {
+				r = 0;
+			} else {
+				r = scale;
+			}
+			while((0.1 < (2*PI)-sangle) && (r < MAX(canvasheight, canvaswidth))){
+				ctx.beginPath();
+				ctx.moveTo(r*COS(sangle), r*SIN(sangle));
+				ctx.lineTo((r+scale)*COS(sangle), (r+scale)*SIN(sangle));
+				ctx.stroke();
+				ctx.closePath();
+				r += 2*scale;
+			}
+			sangle += angle;
+		}
 	}
 
 	generatePatternCircular();
@@ -309,6 +329,7 @@ function loadCanvas() {
 
 function generate() {
 	var mode = document.getElementById('modelist').value;	
+	ctx.setTransform(1, 0, 0, 1, 0, 0);
 	console.log('canvas height: ' + canvasheight);
 	console.log('canvas width: ' + canvaswidth);
 	if(mode=='90 degrees'){
