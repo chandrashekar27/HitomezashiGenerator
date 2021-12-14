@@ -18,8 +18,9 @@ const TAN = Math.tan;
 function generate90(){
 	var xdata;
 	var ydata;
-	var xscale;
-	var yscale;
+	var scale;
+	//max possible reps
+	var total_reps;
 
 	function generatepattern90() {
 		ctx.clearRect(0, 0, canvaswidth, canvasheight);
@@ -27,72 +28,99 @@ function generate90(){
 		xdata = document.getElementById('inputXdata90').value;
 		ydata = document.getElementById('inputYdata90').value;
 		if(xdata==''){
-			xdata = genRandomString(15);
+			xdata = genRandomString(20);
 		}
 		if(ydata==''){
-			ydata = genRandomString(15);
+			ydata = genRandomString(20);
 		}
-		xdata = loopdata(xdata);
-		ydata = loopdata(ydata);
 
-		drawPattern(xdata, ydata);
-		/*console.log(xdata);
-		console.log(ydata);
-		console.log(xdata.length);
-		console.log(ydata.length);*/
+		drawPattern();
 	}
+	/* FOR TESTING
+	// function ObjXDrawer() {
+	// 	this.x = 0;
+	// 	this.y = 0;
+	// 	this.reps = 0;
+
+	// 	this.animate = function() {
+	// 		while(this.reps < 200) {
+	// 			var phasedata = xdata[this.reps];
+	// 			if(phasedata==0) {
+	// 				this.x = 0;
+	// 			} else {
+	// 				this.x = scale;
+	// 			}
+	// 			while(this.x<canvaswidth){
+	// 				ctx.beginPath();
+	// 				ctx.moveTo(this.x,this.y);
+	// 				ctx.lineTo(this.x + scale, this.y);
+	// 				ctx.stroke();
+	// 				ctx.closePath();
+	// 				this.x += (2*scale);
+	// 				//return true;
+	// 			}
+	// 			this.y += scale;
+	// 			this.reps++;
+	// 		}
+	// 		//return false;
+	// 	};
+	// } */
 
 	function drawPattern() {
-		/* Change the scales for
-		/  different sizes and ratios 
-		/  Need to add option for user 
-		/  to set scales
-		*/
-		xscale = 12;
-		yscale = 12;
+		scale = Number(document.getElementById('inputScale90').value);
+		if(!(scale>=1 && scale<=100)){
+			document.getElementById('inputScale90').value = '12';
+			scale = Number(document.getElementById('inputScale90').value);
+		}
+		total_reps = (MAX(canvasheight,canvaswidth)/(scale))+3;
+		xdata = loopdata(xdata, total_reps);
+		ydata = loopdata(ydata, total_reps);
 		drawX();
 		drawY();
 	}
 
 	function drawX() {
-		var x=0, y=0;
-		for(var reps=0; reps < 200; reps++) {
+		var x=0, y=0, reps=0;
+		while(reps < total_reps) {
 			var phasedata = xdata[reps];
 			if(phasedata==0) {
 				x = 0;
 			} else {
-				x = xscale;
+				x = scale;
 			}
 			while(x<canvaswidth){
 				ctx.beginPath();
 				ctx.moveTo(x,y);
-				ctx.lineTo(x + xscale, y);
+				ctx.lineTo(x + scale, y);
 				ctx.stroke();
 				ctx.closePath();
-				x += (2*xscale);
+				x += (2*scale);
+				//return true;
 			}
-			y += yscale;
+			y += scale;
+			reps++;
 		}
+		//return false;
 	}
 
 	function drawY() {
 		var x=0, y=0;
-		for(var reps=0; reps < 200; reps++) {
+		for(var reps=0; reps < total_reps; reps++) {
 			var phasedata = ydata[reps];
 			if(phasedata==0) {
 				y = 0;
 			} else {
-				y = yscale;
+				y = scale;
 			}
 			while(y<canvasheight){
 				ctx.beginPath();
 				ctx.moveTo(x,y);
-				ctx.lineTo(x, y + yscale);
+				ctx.lineTo(x, y + scale);
 				ctx.stroke();
 				ctx.closePath();
-				y += (2*yscale);
+				y += (2*scale);
 			}
-			x += xscale;
+			x += scale;
 		}
 	}
 	//func call
@@ -104,6 +132,8 @@ function generate60() {
 	var ydata;
 	var zdata;
 	var scale;
+	var total_reps;
+	var cpib6 = COS(PI/6);
 
 	function generatepattern60() {
 		ctx.clearRect(0, 0, canvaswidth, canvasheight);
@@ -112,17 +142,14 @@ function generate60() {
 		ydata = document.getElementById('inputYdata60').value;
 		zdata = document.getElementById('inputZdata60').value;
 		if(xdata==''){
-			xdata = genRandomString(15);
+			xdata = genRandomString(20);
 		}
 		if(ydata==''){
-			ydata = genRandomString(15);
+			ydata = genRandomString(20);
 		}
 		if(zdata==''){
-			zdata = genRandomString(15);
+			zdata = genRandomString(20);
 		}
-		xdata = loopdata(xdata);
-		ydata = loopdata(ydata);
-		zdata = loopdata(zdata);
 		drawPattern60();
 	}
 
@@ -132,7 +159,15 @@ function generate60() {
 		/  Need to add option for user 
 		/  to set scales
 		*/
-		scale = 15;
+		scale = Number(document.getElementById('inputScale60').value);
+		if(!(scale>=1 && scale<=100)){
+			document.getElementById('inputScale60').value = '15';
+			scale = Number(document.getElementById('inputScale60').value);
+		}
+		total_reps = (MAX(canvasheight,canvaswidth)/(scale))*2;
+		xdata = loopdata(xdata, total_reps);
+		ydata = loopdata(ydata, total_reps);
+		zdata = loopdata(zdata, total_reps);
 		drawX();
 		drawY();
 		drawZ();
@@ -140,8 +175,7 @@ function generate60() {
 
 	function drawX() {
 		var x=0, y=0;
-		var cpib6 = COS(PI/6);
-		for(var reps=0; reps < 200; reps++) {
+		for(var reps=0; reps < total_reps; reps++) {
 			var phasedata = xdata[reps];
 			if(phasedata==0) {
 				x = 0;
@@ -162,9 +196,7 @@ function generate60() {
 
 	function drawY() {
 		var x, y, startx=0;
-		var cpib6 = COS(PI/6);
-		console.log(cpib6);
-		for(var reps=0; reps < 200; reps++) {
+		for(var reps=0; reps < total_reps; reps++) {
 			var phasedata = ydata[reps];
 			if(phasedata==0) {
 				y = 0;
@@ -174,7 +206,7 @@ function generate60() {
 				y = (cpib6*scale);
 				x = startx - scale/2;
 			}
-			while((y<=canvasheight && y>=0) || (x<=canvaswidth && x>=0)){
+			while((y<=canvasheight && y>=0) || (x<=canvaswidth*2 && x>=0)){
 				ctx.beginPath();
 				ctx.moveTo(x,y);
 				ctx.lineTo(x - (scale*0.5), y + (scale*cpib6));
@@ -188,10 +220,8 @@ function generate60() {
 	}
 
 	function drawZ() {
-		var x, y, startx = -scale*20;
-		var cpib6 = COS(PI/6);
-		console.log(cpib6);
-		for(var reps=0; reps < 200; reps++) {
+		var x, y, startx = -canvasheight;
+		for(var reps=0; reps < total_reps; reps++) {
 			var phasedata = ydata[reps];
 			if(phasedata==0) {
 				y = 0;
@@ -201,7 +231,7 @@ function generate60() {
 				y = (cpib6*scale);
 				x = startx + scale/2;
 			}
-			while((y<=canvasheight && y>=0) || (x<=canvaswidth && x>=0)){
+			while((y<=canvasheight && y>=0) || (x<=canvaswidth)){
 				ctx.beginPath();
 				ctx.moveTo(x,y);
 				ctx.lineTo(x + (scale*0.5), y + (scale*cpib6));
@@ -231,20 +261,31 @@ function generateCircular() {
 		rdata = document.getElementById('inputRdata').value;
 		tdata = document.getElementById('inputTdata').value;
 		if(tdata==''){
-			tdata = genRandomString(15);
+			tdata = genRandomString(20);
 		}
 		if(rdata==''){
-			rdata = genRandomString(15);
+			rdata = genRandomString(20);
 		}
-		rdata = loopdata(rdata);
-		tdata = loopdata(tdata);
 
 		drawCircular();
 	}
 
 	function drawCircular() {
-		angle = PI/12;
-		scale = 6;
+		angle = Number(document.getElementById('inputAngleCircular').value);
+		if(!(angle>=1 && angle<=359)){
+			document.getElementById('inputAngleCircular').value = '10';
+			angle = Number(document.getElementById('inputAngleCircular').value);
+		}
+		angle *= (PI/180);
+		scale = Number(document.getElementById('inputScaleCircular').value);
+		if(!(scale>=1 && scale<=100)){
+			document.getElementById('inputScaleCircular').value = '6';
+			scale = Number(document.getElementById('inputScaleCircular').value);
+		}
+
+		rdata = loopdata(rdata, canvaswidth/2);
+		tdata = loopdata(tdata, canvaswidth/2);
+
 		drawR();
 		drawT();
 	}
@@ -252,8 +293,8 @@ function generateCircular() {
 	function drawR() {
 		var radius = scale;
 		var sangle = 0;
-
-		for(var reps=0; reps < 200; reps++) {
+		var reps = 0;
+		while(radius<MAX(canvasheight,canvaswidth)) {
 			var phasedata = rdata[reps];
 			if(phasedata==0) {
 				sangle = 0;
@@ -268,6 +309,7 @@ function generateCircular() {
 				sangle += (2*angle);
 			}
 			radius += scale;
+			reps++;
 		}
 	}
 
@@ -275,14 +317,15 @@ function generateCircular() {
 		// vars angle, scale
 		var sangle = 0;
 		var r=0;
-		for(var reps=0; reps < 200; reps++) {
+		var reps = 0;
+		while((0.1 < (2*PI)-sangle)) {
 			var phasedata = tdata[reps];
 			if(phasedata==0) {
 				r = 0;
 			} else {
 				r = scale;
 			}
-			while((0.1 < (2*PI)-sangle) && (r < MAX(canvasheight, canvaswidth))){
+			while(r < MAX(canvasheight, canvaswidth)){
 				ctx.beginPath();
 				ctx.moveTo(r*COS(sangle), r*SIN(sangle));
 				ctx.lineTo((r+scale)*COS(sangle), (r+scale)*SIN(sangle));
@@ -291,6 +334,7 @@ function generateCircular() {
 				r += 2*scale;
 			}
 			sangle += angle;
+			reps++;
 		}
 	}
 
@@ -306,9 +350,9 @@ function genRandomString(n) {
 	return ran;
 }
 
-function loopdata(data) {
+function loopdata(data, num) {
 	var temp = String(data);
-	while(data.length<=200){
+	while(data.length<=num){
 		data += temp;
 	}
 	return data;
@@ -330,6 +374,7 @@ function loadCanvas() {
 function generate() {
 	var mode = document.getElementById('modelist').value;	
 	ctx.setTransform(1, 0, 0, 1, 0, 0);
+	//ctx.translate(0.5, 0.5);
 	console.log('canvas height: ' + canvasheight);
 	console.log('canvas width: ' + canvaswidth);
 	if(mode=='90 degrees'){

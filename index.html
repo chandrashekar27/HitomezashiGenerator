@@ -1,11 +1,12 @@
 <!-- 
 	To add
-	1. Better layout and design for whole page
-	2. Option for different colours
-	3. Option for different size of pattern (scale)
-	4. Animation for generating patterns
-	5. Make page responsive (Right now, size of canvas is fixed)
-	6. README page
+		  1. Better layout and design for whole page
+		  2. Option for different colours
+		  3. Option for different size of pattern (scale)
+	HARD  4. Animation for generating patterns
+	HARD  5. Fill in pattern with 2 colours
+	IMP	  6. Make page responsive (Right now, size of canvas is fixed)
+	IMP	  7. README page
  -->
 
 <!DOCTYPE html>
@@ -45,6 +46,8 @@
 				<input class="inpBox" placeholder="Enter as binary string" id="inputXdata90" type="text">
 				<p>Y axis Pattern</p>
 				<input class="inpBox" placeholder="Enter as binary string" id="inputYdata90" type="text">
+				<p>Size of Pattern</p>
+				<input class="inpBox" value = "12" min="1" max="100" step="1" id="inputScale90" type="number">
 			</div>
 			<div class="degrees60">
 				<p>X dir Pattern</p>
@@ -53,12 +56,18 @@
 				<input class="inpBox" placeholder="Enter as binary string" id="inputYdata60" type="text">
 				<p>Z dir Pattern</p>
 				<input class="inpBox" placeholder="Enter as binary string" id="inputZdata60" type="text">
+				<p>Size of Pattern</p>
+				<input class="inpBox" value = "15" min="1" max="100" step="1" id="inputScale60" type="number">
 			</div>
 			<div class="circularInputs">
 				<p>Radial Pattern</p>
 				<input class="inpBox" placeholder="Enter as binary string" id="inputTdata" type="text">
 				<p>Arc Pattern</p>
 				<input class="inpBox" placeholder="Enter as binary string" id="inputRdata" type="text">
+				<p>Angle Size(in degrees)</p>
+				<input class="inpBox" value = "10" id="inputAngleCircular" type="number">
+				<p>Radial Size</p>
+				<input class="inpBox" value = "6" id="inputScaleCircular" type="number">
 			</div>
 			<input id="generateButton" value="Generate" title="Generate" type="submit">
 		</div>
