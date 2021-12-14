@@ -2,7 +2,7 @@
 	To add
 		  1. Better layout and design for whole page
 		  2. Option for different colours
-		  3. Option for different size of pattern (scale)
+		  3. Fix 60 degree pattern different size aligning issue
 	HARD  4. Animation for generating patterns
 	HARD  5. Fill in pattern with 2 colours
 	IMP	  6. Make page responsive (Right now, size of canvas is fixed)
@@ -39,6 +39,17 @@
 					<option value="90 degrees" selected>90 degrees</option>
 					<option value="60 degrees">60 degrees</option>
 					<option value="circular">Circular</option>
+				</select>
+				<label class="colorInput" for="colorlist">Choose color:</label>
+				<select class="colorInput" id="colorlist" name="colorlist">
+					<option value="random" selected>Random</option>
+					<option value="#ff2212">Red</option>
+					<option value="#ffeb12">Yellow</option>
+					<option value="#1aff12">Green</option>
+					<option value="#12ffef">Turquoise</option>
+					<option value="#c012ff">Purple</option>
+					<option value="#1c08ff">Blue</option>
+					<option value="#efdecd">Almond?</option>
 				</select>
 			</form>
 			<div class="degrees90">

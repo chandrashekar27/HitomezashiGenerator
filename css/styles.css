@@ -20,6 +20,11 @@ h1 {
 	margin: 5px;
 }
 
+.colorInput {
+	position: relative;
+	left: 69%;
+}
+
 #inputBoxesDiv {
 	display: inline;
 	background-color: whitesmoke;

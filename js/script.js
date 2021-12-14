@@ -24,7 +24,6 @@ function generate90(){
 
 	function generatepattern90() {
 		ctx.clearRect(0, 0, canvaswidth, canvasheight);
-		ctx.strokeStyle = colors[Math.floor(mrand()*(colors.length))];
 		xdata = document.getElementById('inputXdata90').value;
 		ydata = document.getElementById('inputYdata90').value;
 		if(xdata==''){
@@ -137,7 +136,6 @@ function generate60() {
 
 	function generatepattern60() {
 		ctx.clearRect(0, 0, canvaswidth, canvasheight);
-		ctx.strokeStyle = colors[mfloor(mrand()*(colors.length))];
 		xdata = document.getElementById('inputXdata60').value;
 		ydata = document.getElementById('inputYdata60').value;
 		zdata = document.getElementById('inputZdata60').value;
@@ -257,7 +255,6 @@ function generateCircular() {
 	function generatePatternCircular() {
 		ctx.clearRect(0, 0, canvaswidth, canvasheight);
 		ctx.translate(canvaswidth/2, canvasheight/2);
-		ctx.strokeStyle = colors[mfloor(mrand()*(colors.length))];
 		rdata = document.getElementById('inputRdata').value;
 		tdata = document.getElementById('inputTdata').value;
 		if(tdata==''){
@@ -374,6 +371,13 @@ function loadCanvas() {
 function generate() {
 	var mode = document.getElementById('modelist').value;	
 	ctx.setTransform(1, 0, 0, 1, 0, 0);
+	var colorChosen = document.getElementById('colorlist').value;
+	if(colorChosen=='random'){
+		ctx.strokeStyle = colors[Math.floor(mrand()*(colors.length))];
+	} else {
+		ctx.strokeStyle = colorChosen;
+	}
+	
 	//ctx.translate(0.5, 0.5);
 	console.log('canvas height: ' + canvasheight);
 	console.log('canvas width: ' + canvaswidth);
