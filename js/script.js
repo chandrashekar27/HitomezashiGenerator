@@ -28,9 +28,15 @@ function generate90(){
 		ydata = document.getElementById('inputYdata90').value;
 		if(xdata==''){
 			xdata = genRandomString(20);
+			document.getElementById('inputXdata90').placeholder = xdata;
+		} else {
+			document.getElementById('inputXdata90').placeholder = "Enter as binary string";
 		}
 		if(ydata==''){
 			ydata = genRandomString(20);
+			document.getElementById('inputYdata90').placeholder = ydata;
+		} else {
+			document.getElementById('inputYdata90').placeholder = "Enter as binary string";
 		}
 
 		drawPattern();
@@ -141,12 +147,21 @@ function generate60() {
 		zdata = document.getElementById('inputZdata60').value;
 		if(xdata==''){
 			xdata = genRandomString(20);
+			document.getElementById('inputXdata60').placeholder = xdata;
+		} else {
+			document.getElementById('inputXdata60').placeholder = "Enter as binary string";
 		}
 		if(ydata==''){
 			ydata = genRandomString(20);
+			document.getElementById('inputYdata60').placeholder = ydata;
+		} else {
+			document.getElementById('inputYdata60').placeholder = "Enter as binary string";
 		}
 		if(zdata==''){
 			zdata = genRandomString(20);
+			document.getElementById('inputZdata60').placeholder = zdata;
+		} else {
+			document.getElementById('inputZdata60').placeholder = "Enter as binary string";
 		}
 		drawPattern60();
 	}
@@ -259,9 +274,15 @@ function generateCircular() {
 		tdata = document.getElementById('inputTdata').value;
 		if(tdata==''){
 			tdata = genRandomString(20);
+			document.getElementById('inputTdata').placeholder = tdata;
+		} else {
+			document.getElementById('inputTdata').placeholder = "Enter as binary string";
 		}
 		if(rdata==''){
 			rdata = genRandomString(20);
+			document.getElementById('inputRdata').placeholder = rdata;
+		} else {
+			document.getElementById('inputRdata').placeholder = "Enter as binary string";
 		}
 
 		drawCircular();
