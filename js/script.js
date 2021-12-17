@@ -187,13 +187,14 @@ function generate60() {
 	}
 
 	function drawX() {
-		var x=0, y=0;
+		var x=0, y=0, startx = scale/2;;
 		for(var reps=0; reps < total_reps; reps++) {
 			var phasedata = xdata[reps];
+			startx -= scale/2;
 			if(phasedata==0) {
-				x = 0;
+				x = startx;
 			} else {
-				x = scale;
+				x = startx + (scale);
 			}
 			while(x<canvaswidth){
 				ctx.beginPath();
@@ -208,7 +209,7 @@ function generate60() {
 	}
 
 	function drawY() {
-		var x, y, startx=0;
+		var x, y, startx=(-scale);
 		for(var reps=0; reps < total_reps; reps++) {
 			var phasedata = ydata[reps];
 			if(phasedata==0) {
@@ -233,7 +234,7 @@ function generate60() {
 	}
 
 	function drawZ() {
-		var x, y, startx = -canvasheight;
+		var x, y, startx = -(scale*mfloor(canvasheight/scale));
 		for(var reps=0; reps < total_reps; reps++) {
 			var phasedata = ydata[reps];
 			if(phasedata==0) {
