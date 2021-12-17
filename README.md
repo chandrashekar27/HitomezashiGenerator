@@ -1,6 +1,6 @@
 # Hitomezashi Generator
 
-<!--  -->
+Link to website: https://chandrashekar27.github.io/HitomezashiGenerator/
 
 Create awesome Hitomezashi stitching patterns in 3 unique styles.
 
